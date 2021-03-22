@@ -53,13 +53,11 @@ public class AddressBookTest {
 	@Test
 	public void readFromCSVTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
 		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
-		writeToCSVTest();
 		assertTrue(OpenCSVWriter.readFromCSV());
 	}
 	
 	@Test
 	public void readFromCSVUsingPOJOTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
-		writeToCSVTest();
 		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
 		assertTrue(OpenCSVWriter.readFromCSVUsingPOJO());
 	}

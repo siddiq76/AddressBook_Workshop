@@ -30,19 +30,18 @@ public class OpenCSVWriter {
 	public static boolean writeToCSV()
 			throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
 		List<ContactDetails> addressBook = new ArrayList();
-		addressBook.add(new ContactDetails("Siddiq","khan", "302", "K", "H", 21, "1245341222", "gmail.com"));
-		addressBook.add(new ContactDetails("Siddiq","khan", "302", "K", "H", 21, "1245341232", "gmail.com"));
+		addressBook.add(new ContactDetails("Siddiq","Khan", "302", "K", "H", 21, "1245341222", "gmail.com"));
+		addressBook.add(new ContactDetails("Sissiq","Khan", "302", "K", "H", 21, "1245341232", "gmail.com"));
+//		Writer writer = Files.newBufferedWriter(Paths.get("F:/demo/demo.csv"));
+		FileWriter writer = new FileWriter("F:/demo/newdemo.csv");
+		StatefulBeanToCsv<ContactDetails> beanToCsv = new StatefulBeanToCsvBuilder<ContactDetails>(writer).withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
+		ColumnPositionMappingStrategy<ContactDetails> mappingStrategy= new ColumnPositionMappingStrategy<ContactDetails>();
+		mappingStrategy.setType(ContactDetails.class);
+		String []columns = new String[] {"firstName","lastName","address","city","state","zip","phoneNumber","email"};
+		mappingStrategy.setColumnMapping(columns);
 		try {
-			Writer writer = Files.newBufferedWriter(Paths.get("F:/demo/demo.csv"));
-			StatefulBeanToCsv<ContactDetails> beanToCsv = new StatefulBeanToCsvBuilder<ContactDetails>(writer).withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
-			ColumnPositionMappingStrategy<ContactDetails> mappingStrategy= new ColumnPositionMappingStrategy<ContactDetails>();
-			mappingStrategy.setType(ContactDetails.class);
-			String []columns = new String[] {"firstName","lastName","address","city","state","zip","phoneNumber","email"};
-			mappingStrategy.setColumnMapping(columns);
-		
 			System.out.println(addressBook);
 			beanToCsv.write(addressBook);
-			writer.close();
 		}catch(Exception exception) {
 			System.out.println("Exception occured while writing");
 		}
