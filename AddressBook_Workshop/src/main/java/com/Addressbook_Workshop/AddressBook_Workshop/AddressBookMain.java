@@ -208,6 +208,7 @@ public class AddressBookMain {
 	 */
 	private void editContactDetails() {
 		Scanner sc = new Scanner(System.in);
+//		char c='N';
 		while (true) {
 			System.out.print(
 					"Would you like to make changes to address book" + "\n1. Y/y for yes" + "\n2. N/n for no" + "\n");
