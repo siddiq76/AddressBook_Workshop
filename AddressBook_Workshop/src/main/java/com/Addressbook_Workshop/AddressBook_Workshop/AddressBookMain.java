@@ -145,6 +145,7 @@ public class AddressBookMain {
 		}
 		System.out.println("The contact details for addressbook " + this.getName() + " are as follows:");
 		for (int i = 0; i < contactBook.size(); i++) {
+//			System.out.println("Name of Address book: " + this.name);
 			System.out.println("\nContact No:" + (i + 1));
 			System.out.println(contactBook.get(i));
 		}
@@ -207,7 +208,6 @@ public class AddressBookMain {
 	 */
 	private void editContactDetails() {
 		Scanner sc = new Scanner(System.in);
-//		char c='N';
 		while (true) {
 			System.out.print(
 					"Would you like to make changes to address book" + "\n1. Y/y for yes" + "\n2. N/n for no" + "\n");
