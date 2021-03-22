@@ -16,6 +16,7 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 
+
 /**
  * Unit test for AddressBook.
  */
@@ -25,7 +26,7 @@ public class AddressBookTest {
 	@Before
 	public void init() {
 		addressBook = AddressBookMain.getAddressBook();
-		addressBook.addContactDetails(new ContactDetails("Shubham","Mittal", "302", "K", "H", 21, "1245341212", "gmail.com"));
+		addressBook.addContactDetails(new ContactDetails("Siddiq","Khan", "302", "K", "H", 21, "1245341222", "gmail.com"));
 	}
 
 	@Test
@@ -52,11 +53,13 @@ public class AddressBookTest {
 	@Test
 	public void readFromCSVTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
 		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
+		writeToCSVTest();
 		assertTrue(OpenCSVWriter.readFromCSV());
 	}
 	
 	@Test
 	public void readFromCSVUsingPOJOTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
+		writeToCSVTest();
 		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
 		assertTrue(OpenCSVWriter.readFromCSVUsingPOJO());
 	}
