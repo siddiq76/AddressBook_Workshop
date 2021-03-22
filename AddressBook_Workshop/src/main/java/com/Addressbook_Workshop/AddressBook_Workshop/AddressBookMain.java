@@ -109,6 +109,7 @@ public class AddressBookMain
 	
 	private void editContactDetails() {
 		Scanner sc= new Scanner(System.in);
+
 		while(true) {
 			System.out.print("Would you like to make changes to address book"
 					+ "\n1. Y/y for yes"
@@ -194,10 +195,19 @@ public class AddressBookMain
      */
     public static void main( String[] args )
     {
+    	Scanner sc = new Scanner(System.in);
         System.out.println( "Welcome to Address Book Program" );
         AddressBookMain addressBook = new AddressBookMain();
-        addressBook.addContactDetails(getContactDetails());
-        addressBook.addContactDetails(getContactDetails());
+        while(true)
+        {
+        	System.out.println("Select \n1. For adding details \n2. Exit, If all contacts added");
+        	int input = sc.nextInt();
+        	sc.nextLine();
+        	if(input == 2)
+        		break;
+        	addressBook.addContactDetails(getContactDetails());
+        	
+        }
         addressBook.editContactDetails();
         addressBook.deleteThrName();
         addressBook.printAddressBook();   
