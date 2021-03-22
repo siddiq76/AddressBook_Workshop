@@ -12,6 +12,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 
 /**
  * Unit test for AddressBook.
@@ -22,7 +25,7 @@ public class AddressBookTest {
 	@Before
 	public void init() {
 		addressBook = AddressBookMain.getAddressBook();
-		addressBook.addContactDetails(AddressBookMain.getContactDetails());
+		addressBook.addContactDetails(new ContactDetails("Shubham","Mittal", "302", "K", "H", 21, "1245341212", "gmail.com"));
 	}
 
 	@Test
@@ -39,6 +42,35 @@ public class AddressBookTest {
 		assertTrue(addressBook.writeToFile("F:/demo/demo.txt"));
 		assertNotNull(addressBook.readFromFile("F:/demo/demo.txt"));
 	}
+	
+	@Test
+	public void writeToCSVTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
+		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
+		assertTrue(OpenCSVWriter.writeToCSV());
+	}
 
+	@Test
+	public void readFromCSVTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
+		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
+		assertTrue(OpenCSVWriter.readFromCSV());
+	}
+	
+	@Test
+	public void readFromCSVUsingPOJOTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
+		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
+		assertTrue(OpenCSVWriter.readFromCSVUsingPOJO());
+	}
+	
+	@Test
+	public void writeToJSONTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
+		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
+		assertTrue(OpenCSVWriter.writeToJSON());
+	}
 
+	@Test
+	public void readFromJSONTest() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
+		assertTrue(FileOperations.createDirectory("F:", "F:/demo"));
+		OpenCSVWriter.writeToJSON();
+		assertTrue(OpenCSVWriter.readFromJSON());
+	}
 }
